@@ -1,83 +1,55 @@
-# Exponential-Growth-Sheets-Function
-This project is a custom Google Sheets function that calculates values with an exponentially increasing growth rate. Unlike a simple percentage increase, the growth rate itself compounds with each step, allowing for accelerating growth in spreadsheets.
-Exponential Growth Sheets Function
+# EXP_GROW Function - Usage & Help
 
-A Google Sheets custom function that calculates values with a compounding exponential growth rate. The growth rate itself increases slightly at each step, producing accelerating values — perfect for simulations, financial modeling, or data analysis.
+This file contains instructions on how to use the `EXP_GROW` Google Sheets function, including formulas and examples.
 
-Features
+## 1. Installing the Function
 
-Simple custom function: EXP_GROW(startValue, step)
+1. Open your Google Sheet.  
+2. Go to **Extensions → Apps Script**.  
+3. Create a new project and paste the code from `exp_grow.gs`.  
+4. Save the project.
 
-Supports array input via ARRAYFORMULA
+## 2. How to Use in Sheets
 
-Calculates exponential growth with a compounding growth rate
+### Single Value
+```plaintext
+=EXP_GROW(startValue, step)
 
-Easy to use in any Google Sheet
+startValue = the starting number
 
-Installation
+step = row number or step in the sequence
 
-Open your Google Sheet
+Example:
 
-Go to Extensions → Apps Script
-
-Delete any default code
-
-Copy and paste the following:
-
-function EXP_GROW(startValue, steps) {
-  var initialGrowth = 0.01; // 1%
-
-  // If "steps" is a single number, wrap it into an array
-  if (!Array.isArray(steps)) {
-    steps = [[steps]];
-  }
-
-  var output = [];
-
-  for (var i = 0; i < steps.length; i++) {
-    var row = [];
-    for (var j = 0; j < steps[i].length; j++) {
-      var step = steps[i][j];
-      var growthRate = initialGrowth * Math.pow(1.01, step - 1);
-      row.push(startValue * (1 + growthRate));
-    }
-    output.push(row);
-  }
-
-  return output;
-}
-
-
-Save the project and close the editor
-
-Usage
-Single Value
-=EXP_GROW(100, 1)  // Returns the first value
-
+=EXP_GROW(100, 1)  // Returns 100 × (1 + 1% growth)
 Multiple Values (Array)
-=ARRAYFORMULA(EXP_GROW(100, SEQUENCE(50,1)))  
+=ARRAYFORMULA(EXP_GROW(100, SEQUENCE(50,1)))
+Generates 50 steps of exponentially growing values
+Outputs in a vertical column
+
+##3. Formula-Only Version (Optional)
+If you prefer a single-cell formula without Apps Script:
+
+=A1 * (1 + 0.01 * 1.01^(ROW(A1)))
 
 
-This generates 50 steps of exponentially growing values in a column.
+Place your starting value in A1.
+Drag down or use with ARRAYFORMULA for multiple steps.
 
-How It Works
 
-Start with an initial value (startValue)
+**4. Tips**
 
-Set an initial growth rate (default 1%)
+You can change the initial growth rate by adjusting 0.01 (1%) in the Apps Script.
+The 1.01 factor controls how fast the growth rate increases per step.
+Use ARRAYFORMULA to generate entire sequences automatically.
 
-Each step increases the growth rate by 1% relative to the previous step
-
-Multiply the previous value by (1 + current growth rate) to get the next value
-
-Example Output
+**5. Example Output**
 Step	Value
-1	100
-2	101.01
-3	102.03
-4	103.06
-5	104.10
-License
+1	  |  100
+2	  |  101.01
+3	  |  102.03
+4	  |  103.06
+5	  |  104.10
 
-This project is released under the MIT License
-.
+
+
