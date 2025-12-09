@@ -37,19 +37,21 @@ Place your starting value in A1.
 Drag down or use with ARRAYFORMULA for multiple steps.
 
 
-**4. Tips**
+4. Tips
 
 You can change the initial growth rate by adjusting 0.01 (1%) in the Apps Script.
 The 1.01 factor controls how fast the growth rate increases per step.
 Use ARRAYFORMULA to generate entire sequences automatically.
 
-**5. Example Output**
+##5. Example Output
 Step	Value
 1	  |  100
 2	  |  101.01
 3	  |  102.03
 4	  |  103.06
 5	  |  104.10
+
+
 
 
 
