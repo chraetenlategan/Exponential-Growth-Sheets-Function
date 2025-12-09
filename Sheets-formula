@@ -1,0 +1,5 @@
+#Formula-Only Version
+=A1 * (1 + 0.01 * 1.01^(ROW(A1)))
+
+#Multiple values
+=ARRAYFORMULA(EXP_GROW(100, SEQUENCE(50,1)))
